@@ -38,7 +38,7 @@ composer install
 ### 4. Migrasi Database
 Untuk mempersiapkan struktur database, jalankan migrasi:
 ```bash
-php artisan migrate
+php artisan migrate:fresh
 ```
 
 ### 5. Menjalankan Aplikasi
