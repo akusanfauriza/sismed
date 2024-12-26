@@ -12,7 +12,8 @@ class DoctorController extends Controller
      */
     public function index()
     {
-        //
+        $doctors = Doctor::all(); // Ambil semua data dokter
+        return view('doctors.index', compact('doctors'));
     }
 
     /**
