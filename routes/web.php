@@ -1,7 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\DoctorController;
+use App\Http\Controllers\ObatController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -17,4 +18,4 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::resource('doctors', DoctorController::class);
+Route::get('/obat', [ObatController::class, 'index']);

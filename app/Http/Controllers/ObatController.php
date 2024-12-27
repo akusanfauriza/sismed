@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Obat;
 
 class ObatController extends Controller
 {
@@ -11,7 +12,11 @@ class ObatController extends Controller
      */
     public function index()
     {
-        //
+         // Ambil semua data obat dari tabel
+         $dataObat = Obat::all();
+
+         // Kirim data ke view
+         return view('obat.index', compact('dataObat'));
     }
 
     /**
