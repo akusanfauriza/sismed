@@ -30,7 +30,6 @@ class ObatController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    // Simpan data obat ke database
     public function store(Request $request)
     {
         // Validasi input
@@ -70,7 +69,11 @@ class ObatController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        // Cari data obat berdasarkan ID
+        $obat = Obat::findOrFail($id);
+
+        // Kirim data obat ke view edit
+        return view('obat.edit', compact('obat'));
     }
 
     /**
@@ -78,7 +81,29 @@ class ObatController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        // Validasi input
+        $request->validate([
+            'nama_obat' => 'required|string|max:255',
+            'jenis_obat' => 'required|string|max:255',
+            'dosis' => 'required|string|max:255',
+            'stok' => 'required|integer|min:0',
+            'harga' => 'required|integer|min:0',
+            'keterangan' => 'nullable|string',
+        ]);
+
+        // Cari data obat berdasarkan ID dan update
+        $obat = Obat::findOrFail($id);
+        $obat->update([
+            'nama_obat' => $request->nama_obat,
+            'jenis_obat' => $request->jenis_obat,
+            'dosis' => $request->dosis,
+            'stok' => $request->stok,
+            'harga' => $request->harga,
+            'keterangan' => $request->keterangan,
+        ]);
+
+        // Redirect ke halaman daftar obat dengan pesan sukses
+        return redirect()->route('obat.index')->with('success', 'Data obat berhasil diperbarui.');
     }
 
     /**

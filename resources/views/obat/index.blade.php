@@ -7,8 +7,10 @@
 </head>
 <body>
     <h1>Daftar Obat</h1>
-
-    <table border="1" cellpadding="10">
+    @if(session('success'))
+        <p style="color: green;">{{ session('success') }}</p>
+    @endif
+    <table border="1" cellpadding="10" cellspacing="0">
         <thead>
             <tr>
                 <th>ID</th>
@@ -18,6 +20,7 @@
                 <th>Stok</th>
                 <th>Harga</th>
                 <th>Keterangan</th>
+                <th>Aksi</th>
             </tr>
         </thead>
         <tbody>
@@ -30,6 +33,9 @@
                 <td>{{ $obat->stok }}</td>
                 <td>{{ $obat->harga }}</td>
                 <td>{{ $obat->keterangan }}</td>
+                <td>
+                    <a href="{{ route('obat.edit', $obat->id) }}">Edit</a>
+                </td>
             </tr>
             @endforeach
         </tbody>

@@ -24,3 +24,7 @@ Route::get('/obat', [ObatController::class, 'index']);
 // Create Obat
 Route::get('/obat/create', [ObatController::class, 'create'])->name('obat.create');
 Route::post('/obat', [ObatController::class, 'store'])->name('obat.store');
+
+// Update Obat
+Route::get('/obat/{id}/edit', [ObatController::class, 'edit'])->name('obat.edit');
+Route::put('/obat/{id}', [ObatController::class, 'update'])->name('obat.update');
