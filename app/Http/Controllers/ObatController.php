@@ -67,7 +67,7 @@ class ObatController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit($id)
     {
         // Cari data obat berdasarkan ID
         $obat = Obat::findOrFail($id);
@@ -79,7 +79,7 @@ class ObatController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, $id)
     {
         // Validasi input
         $request->validate([

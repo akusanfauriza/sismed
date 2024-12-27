@@ -18,13 +18,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-// Route Halaman Obat
-Route::get('/obat', [ObatController::class, 'index']);
-
-// Create Obat
-Route::get('/obat/create', [ObatController::class, 'create'])->name('obat.create');
-Route::post('/obat', [ObatController::class, 'store'])->name('obat.store');
-
-// Update Obat
-Route::get('/obat/{id}/edit', [ObatController::class, 'edit'])->name('obat.edit');
-Route::put('/obat/{id}', [ObatController::class, 'update'])->name('obat.update');
+// Halaman Obat
+Route::get('/obat', [ObatController::class, 'index'])->name('obat.index'); // Menampilkan daftar obat
+Route::get('/obat/create', [ObatController::class, 'create'])->name('obat.create'); // Form tambah obat
+Route::post('/obat', [ObatController::class, 'store'])->name('obat.store'); // Simpan obat baru
+Route::get('/obat/{id}/edit', [ObatController::class, 'edit'])->name('obat.edit'); // Form edit obat
+Route::put('/obat/{id}', [ObatController::class, 'update'])->name('obat.update'); // Update obat
