@@ -109,8 +109,16 @@ class ObatController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy($id)
     {
-        //
+        // Cari data obat berdasarkan ID
+        $obat = Obat::findOrFail($id);
+
+        // Hapus data
+        $obat->delete();
+
+        // Redirect ke halaman daftar obat dengan pesan sukses
+        return redirect()->route('obat.index')->with('success', 'Data obat berhasil dihapus.');
     }
+
 }

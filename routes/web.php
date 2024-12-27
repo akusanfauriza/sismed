@@ -24,3 +24,4 @@ Route::get('/obat/create', [ObatController::class, 'create'])->name('obat.create
 Route::post('/obat', [ObatController::class, 'store'])->name('obat.store'); // Simpan obat baru
 Route::get('/obat/{id}/edit', [ObatController::class, 'edit'])->name('obat.edit'); // Form edit obat
 Route::put('/obat/{id}', [ObatController::class, 'update'])->name('obat.update'); // Update obat
+Route::delete('/obat/{id}', [ObatController::class, 'destroy'])->name('obat.destroy'); //Delete obat

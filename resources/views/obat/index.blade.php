@@ -37,6 +37,13 @@
                 <td>{{ $obat->keterangan }}</td>
                 <td>
                     <a href="{{ route('obat.edit', $obat->id) }}">Edit</a>
+
+                    <!-- Tombol Delete -->
+                    <form action="{{ route('obat.destroy', $obat->id) }}" method="POST" style="display:inline;">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" onclick="return confirm('Yakin ingin menghapus data ini?')">Delete</button>
+                    </form>
                 </td>
             </tr>
             @endforeach
