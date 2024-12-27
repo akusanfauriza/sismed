@@ -10,6 +10,8 @@
     @if(session('success'))
         <p style="color: green;">{{ session('success') }}</p>
     @endif
+    <!-- Tombol Tambah Data -->
+    <a href="{{ route('obat.create') }}">Tambah Data Obat</a>
     <table border="1" cellpadding="10" cellspacing="0">
         <thead>
             <tr>
