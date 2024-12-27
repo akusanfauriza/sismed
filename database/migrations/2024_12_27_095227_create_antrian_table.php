@@ -11,10 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('patients', function (Blueprint $table) {
+        Schema::create('antrian', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('id_pasien')->constrained('pasien')->onDelete('cascade');
+            $table->date('tanggal_antrian');
+            $table->enum('status', ['menunggu', 'sedang diperiksa', 'selesai']);
+            $table->foreignId('id_dokter')->constrained('pengguna')->onDelete('cascade');
             $table->timestamps();
         });
+        
     }
 
     /**
@@ -22,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('patients');
+        Schema::dropIfExists('antrian');
     }
 };

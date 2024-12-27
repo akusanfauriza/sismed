@@ -11,14 +11,17 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('tb_appointments', function (Blueprint $table) {
+        Schema::create('pasien', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('patient_id')->constrained('tb_patients')->onDelete('cascade');
-            $table->foreignId('doctor_id')->constrained('tb_doctors')->onDelete('cascade');
-            $table->dateTime('appointment_date');
-            $table->text('notes')->nullable();
+            $table->string('nama');
+            $table->text('alamat');
+            $table->date('tanggal_lahir');
+            $table->enum('jenis_kelamin', ['L', 'P']);
+            $table->string('no_hp')->nullable();
+            $table->text('riwayat_penyakit')->nullable();
             $table->timestamps();
         });
+        
     }
 
     /**
@@ -26,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('tb_appointments');
+        Schema::dropIfExists('pasien');
     }
 };
