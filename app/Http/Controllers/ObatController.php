@@ -12,11 +12,11 @@ class ObatController extends Controller
      */
     public function index()
     {
-         // Ambil semua data obat dari tabel
-         $dataObat = Obat::all();
+        // Ambil semua data obat dari tabel
+        $dataObat = Obat::all();
 
-         // Kirim data ke view
-         return view('obat.index', compact('dataObat'));
+        // Kirim data ke view
+        return view('obat.index', compact('dataObat'));
     }
 
     /**
@@ -24,15 +24,37 @@ class ObatController extends Controller
      */
     public function create()
     {
-        //
+        return view('obat.create');
     }
 
     /**
      * Store a newly created resource in storage.
      */
+    // Simpan data obat ke database
     public function store(Request $request)
     {
-        //
+        // Validasi input
+        $request->validate([
+            'nama_obat' => 'required|string|max:255',
+            'jenis_obat' => 'required|string|max:255',
+            'dosis' => 'required|string|max:255',
+            'stok' => 'required|integer|min:0',
+            'harga' => 'required|integer|min:0',
+            'keterangan' => 'nullable|string',
+        ]);
+
+        // Simpan data ke database
+        Obat::create([
+            'nama_obat' => $request->nama_obat,
+            'jenis_obat' => $request->jenis_obat,
+            'dosis' => $request->dosis,
+            'stok' => $request->stok,
+            'harga' => $request->harga,
+            'keterangan' => $request->keterangan,
+        ]);
+
+        // Redirect dengan pesan sukses
+        return redirect()->route('obat.create')->with('success', 'Data obat berhasil ditambahkan.');
     }
 
     /**

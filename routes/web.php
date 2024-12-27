@@ -18,4 +18,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+// Route Halaman Obat
 Route::get('/obat', [ObatController::class, 'index']);
+
+// Create Obat
+Route::get('/obat/create', [ObatController::class, 'create'])->name('obat.create');
+Route::post('/obat', [ObatController::class, 'store'])->name('obat.store');
