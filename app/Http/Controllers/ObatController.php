@@ -85,20 +85,16 @@ class ObatController extends Controller
             'keterangan' => 'nullable|string',
         ]);
 
-        // Cari data obat berdasarkan ID dan update
+        // Cari data obat berdasarkan ID
         $obat = Obat::findOrFail($id);
-        $obat->update([
-            'nama_obat' => $request->nama_obat,
-            'jenis_obat' => $request->jenis_obat,
-            'dosis' => $request->dosis,
-            'stok' => $request->stok,
-            'harga' => $request->harga,
-            'keterangan' => $request->keterangan,
-        ]);
+
+        // Update data
+        $obat->update($request->all());
 
         // Redirect ke halaman daftar obat dengan pesan sukses
         return redirect()->route('obat.index')->with('success', 'Data obat berhasil diperbarui.');
     }
+
 
     /**
      * Remove the specified resource from storage.
