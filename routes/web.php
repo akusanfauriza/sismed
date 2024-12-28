@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AntrianController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ObatController;
 use App\Http\Controllers\PasienController;
@@ -43,3 +44,12 @@ Route::post('/pengguna', [PenggunaController::class, 'store'])->name('pengguna.s
 Route::get('/pengguna/{id}/edit', [PenggunaController::class, 'edit'])->name('pengguna.edit'); // Form edit pasien
 Route::put('/pengguna/{id}', [PenggunaController::class, 'update'])->name('pengguna.update'); // Update pasien
 Route::delete('/pengguna/{id}', [PenggunaController::class, 'destroy'])->name('pengguna.destroy'); // Delete pasien
+
+
+// Halaman Antrian
+Route::get('/antrian', [AntrianController::class, 'index'])->name('antrian.index'); // Menampilkan daftar Pasien
+Route::get('/antrian/create', [AntrianController::class, 'create'])->name('antrian.create'); // Form tambah pasien
+Route::post('/antrian', [AntrianController::class, 'store'])->name('antrian.store'); // Simpan pasien baru
+Route::get('/antrian/{id}/edit', [AntrianController::class, 'edit'])->name('antrian.edit'); // Form edit pasien
+Route::put('/antrian/{id}', [AntrianController::class, 'update'])->name('antrian.update'); // Update pasien
+Route::delete('/antrian/{id}', [AntrianController::class, 'destroy'])->name('antrian.destroy'); // Delete pasien
