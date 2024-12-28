@@ -29,3 +29,8 @@ Route::delete('/obat/{id}', [ObatController::class, 'destroy'])->name('obat.dest
 
 // Halaman Pasien
 Route::get('/pasien', [PasienController::class, 'index'])->name('pasien.index'); // Menampilkan daftar Pasien
+Route::get('/pasien/create', [PasienController::class, 'create'])->name('pasien.create'); // Form tambah pasien
+Route::post('/pasien', [PasienController::class, 'store'])->name('pasien.store'); // Simpan pasien baru
+Route::get('/pasien/{id}/edit', [PasienController::class, 'edit'])->name('pasien.edit'); // Form edit pasien
+Route::put('/pasien/{id}', [PasienController::class, 'update'])->name('pasien.update'); // Update pasien
+Route::delete('/pasien/{id}', [PasienController::class, 'destroy'])->name('pasien.destroy'); // Delete pasien

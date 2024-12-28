@@ -19,20 +19,30 @@ class PasienController extends Controller
         return view('pasien.index', compact('dataPasien'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
+    // Create Data Pasien
     public function create()
     {
-        //
+        return view('pasien.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
+    // Meyimpan Data Pasien
     public function store(Request $request)
     {
-        //
+        // Validasi input
+        $request->validate([
+            'nama' => 'required|string|max:255',
+            'alamat' => 'required|string',
+            'tanggal_lahir' => 'required|date',
+            'jenis_kelamin' => 'required|in:L,P',
+            'no_hp' => 'nullable|string|max:15',
+            'riwayat_penyakit' => 'nullable|string',
+        ]);
+
+        // Simpan data ke database
+        Pasien::create($request->all());
+
+        // Redirect ke halaman lain dengan pesan sukses
+        return redirect()->route('pasien.index')->with('success', 'Data pasien berhasil ditambahkan.');
     }
 
     /**
@@ -43,27 +53,51 @@ class PasienController extends Controller
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
+    // Edit Data Pasien
+    public function edit($id)
     {
-        //
+        // Ambil data pasien berdasarkan ID
+        $pasien = Pasien::findOrFail($id);
+
+        // Kirim data ke view
+        return view('pasien.edit', compact('pasien'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
+
+    // Update Data Pasien
+    public function update(Request $request, $id)
     {
-        //
+        // Validasi input
+        $request->validate([
+            'nama' => 'required|string|max:255',
+            'alamat' => 'required|string',
+            'tanggal_lahir' => 'required|date',
+            'jenis_kelamin' => 'required|in:L,P',
+            'no_hp' => 'nullable|string|max:15',
+            'riwayat_penyakit' => 'nullable|string',
+        ]);
+
+        // Temukan data pasien berdasarkan ID
+        $pasien = Pasien::findOrFail($id);
+
+        // Update data pasien
+        $pasien->update($request->all());
+
+        // Redirect ke halaman index dengan pesan sukses
+        return redirect()->route('pasien.index')->with('success', 'Data pasien berhasil diperbarui.');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
+
+    // Hapus Data Pasien
+    public function destroy($id)
     {
-        //
+        // Cari data obat berdasarkan ID
+        $pasien = Pasien::findOrFail($id);
+
+        // Hapus data
+        $pasien->delete();
+
+        // Redirect ke halaman daftar pasien dengan pesan sukses
+        return redirect()->route('pasien.index')->with('success', 'Data pasien berhasil dihapus.');
     }
 }

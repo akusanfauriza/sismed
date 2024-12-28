@@ -40,7 +40,6 @@
                     <a href="{{ route('obat.edit', $obat->id) }}">Edit</a>
 
                     <!-- Hapus Data -->
-                     <!-- Tombol Delete -->
                     <form action="{{ route('obat.destroy', $obat->id) }}" method="POST" style="display:inline;">
                         @csrf
                         @method('DELETE')
