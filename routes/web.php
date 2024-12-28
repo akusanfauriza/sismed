@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ObatController;
 use App\Http\Controllers\PasienController;
+use App\Http\Controllers\PenggunaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,3 +35,11 @@ Route::post('/pasien', [PasienController::class, 'store'])->name('pasien.store')
 Route::get('/pasien/{id}/edit', [PasienController::class, 'edit'])->name('pasien.edit'); // Form edit pasien
 Route::put('/pasien/{id}', [PasienController::class, 'update'])->name('pasien.update'); // Update pasien
 Route::delete('/pasien/{id}', [PasienController::class, 'destroy'])->name('pasien.destroy'); // Delete pasien
+
+// Halaman Pasien
+Route::get('/pengguna', [PenggunaController::class, 'index'])->name('pengguna.index'); // Menampilkan daftar Pasien
+Route::get('/pengguna/create', [PenggunaController::class, 'create'])->name('pengguna.create'); // Form tambah pasien
+Route::post('/pengguna', [PenggunaController::class, 'store'])->name('pengguna.store'); // Simpan pasien baru
+Route::get('/pengguna/{id}/edit', [PenggunaController::class, 'edit'])->name('pengguna.edit'); // Form edit pasien
+Route::put('/pengguna/{id}', [PenggunaController::class, 'update'])->name('pengguna.update'); // Update pasien
+Route::delete('/pengguna/{id}', [PenggunaController::class, 'destroy'])->name('pengguna.destroy'); // Delete pasien
