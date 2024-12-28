@@ -36,7 +36,16 @@
                 <td>{{ $obat->harga }}</td>
                 <td>{{ $obat->keterangan }}</td>
                 <td>
+                    <!-- Edit Data -->
                     <a href="{{ route('obat.edit', $obat->id) }}">Edit</a>
+
+                    <!-- Hapus Data -->
+                     <!-- Tombol Delete -->
+                    <form action="{{ route('obat.destroy', $obat->id) }}" method="POST" style="display:inline;">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')">Delete</button>
+                    </form>
                 </td>
             </tr>
             @endforeach
