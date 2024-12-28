@@ -42,19 +42,13 @@ class ObatController extends Controller
             'keterangan' => 'nullable|string',
         ]);
 
-        // Simpan data ke database
-        Obat::create([
-            'nama_obat' => $request->nama_obat,
-            'jenis_obat' => $request->jenis_obat,
-            'dosis' => $request->dosis,
-            'stok' => $request->stok,
-            'harga' => $request->harga,
-            'keterangan' => $request->keterangan,
-        ]);
+        // Simpan data ke tabel obat
+        Obat::create($request->all());
 
-        // Redirect dengan pesan sukses
-        return redirect()->route('obat.create')->with('success', 'Data obat berhasil ditambahkan.');
+        // Redirect ke halaman daftar obat dengan pesan sukses
+        return redirect()->route('obat.index')->with('success', 'Data obat berhasil ditambahkan.');
     }
+
 
     /**
      * Display the specified resource.

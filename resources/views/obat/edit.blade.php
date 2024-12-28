@@ -27,7 +27,7 @@
         <input type="number" name="harga" id="harga" value="{{ $obat->harga }}" required><br><br>
 
         <label for="keterangan">Keterangan:</label>
-        <textarea name="keterangan" id="keterangan">{{ $obat->keterangan }}</textarea><br><br>
+        <textarea name="keterangan" id="keterangan" value="{{ $obat->keterangan }}"></textarea><br><br>
 
         <button type="submit">Simpan Perubahan</button>
     </form>
