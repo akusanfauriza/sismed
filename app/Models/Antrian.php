@@ -11,13 +11,18 @@ class Antrian extends Model
 
     protected $table = 'antrian';
     
+
+    
     protected $fillable = [
         'id_pasien',
         'tanggal_antrian',
         'status',
         'id_dokter',
     ];
-
+    protected $casts = [
+        'tanggal_antrian' => 'datetime'
+    ];
+  
     public function pasien()
     {
         return $this->belongsTo(Pasien::class, 'id_pasien');
