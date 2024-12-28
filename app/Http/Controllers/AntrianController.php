@@ -39,13 +39,6 @@ class AntrianController extends Controller
      */
     public function store(Request $request)
     {
-        // Validasi input
-        $request->validate([
-            'id_pasien' => 'required|exists:pasien,id',
-            'tanggal_antrian' => 'required|date',
-            'status' => 'required|in:menunggu,sedang diperiksa,selesai',
-            'id_dokter' => 'required|exists:pengguna,id',
-        ]);
 
         // Simpan data ke tabel antrian
         Antrian::create($request->all());
@@ -75,13 +68,6 @@ class AntrianController extends Controller
      */
     public function update(Request $request, $id)
     {
-        // Validasi input
-        $request->validate([
-            'id_pasien' => 'required|exists:pasien,id',
-            'tanggal_antrian' => 'required|date',
-            'status' => 'required|in:menunggu,sedang diperiksa,selesai',
-            'id_dokter' => 'required|exists:pengguna,id',
-        ]);
 
         // Cari data antrian berdasarkan ID
         $antrian = Antrian::findOrFail($id);
