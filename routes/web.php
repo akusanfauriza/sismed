@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ObatController;
 use App\Http\Controllers\PasienController;
 use App\Http\Controllers\PenggunaController;
+use App\Http\Controllers\RekamMedisController;
 
 /*
 |--------------------------------------------------------------------------
@@ -53,3 +54,11 @@ Route::post('/antrian', [AntrianController::class, 'store'])->name('antrian.stor
 Route::get('/antrian/{id}/edit', [AntrianController::class, 'edit'])->name('antrian.edit'); // Form edit pasien
 Route::put('/antrian/{id}', [AntrianController::class, 'update'])->name('antrian.update'); // Update pasien
 Route::delete('/antrian/{id}', [AntrianController::class, 'destroy'])->name('antrian.destroy'); // Delete pasien
+
+// Halaman Rekam Medis
+Route::get('rekam-medis', [RekamMedisController::class, 'index'])->name('rekam_medis.index');
+    Route::get('rekam-medis/create', [RekamMedisController::class, 'create'])->name('rekam_medis.create');
+    Route::post('rekam-medis', [RekamMedisController::class, 'store'])->name('rekam_medis.store');
+    Route::get('rekam-medis/{rekamMedis}/edit', [RekamMedisController::class, 'edit'])->name('rekam_medis.edit');
+    Route::put('rekam-medis/{rekamMedis}', [RekamMedisController::class, 'update'])->name('rekam_medis.update');
+    Route::delete('rekam-medis/{rekamMedis}', [RekamMedisController::class, 'destroy'])->name('rekam_medis.destroy');
