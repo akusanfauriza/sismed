@@ -52,4 +52,4 @@ Akses aplikasi melalui browser di `http://localhost:8000`.
 - Manajemen data pasien
 - Rekam medis elektronik
 - Pengelolaan jadwal dokter
-- Laporan statistik medis
+- Laporan statistik medis 
