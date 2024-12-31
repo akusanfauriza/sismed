@@ -7,98 +7,89 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color:rgb(215, 215, 233);
-            margin: 0;
-            padding: 20px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
+            margin: 20px;
         }
 
-        .form-container {
-            background: #ffffff;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            max-width: 400px;
-            width: 100%;
-        }
-
-        h1 {
-            text-align: center;
-            margin-bottom: 20px;
-            color: #333;
+        form div {
+            margin-bottom: 10px;
         }
 
         label {
             display: block;
-            margin-bottom: 8px;
+            margin-bottom: 5px;
             font-weight: bold;
-            color: #555;
         }
 
         input, textarea, button {
-            width: 377px;   
-            padding: 10px;
-            margin-bottom: 15px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            font-size: 16px;
-        }
-
-        input:focus, textarea:focus {
-            border-color: #007bff;
-            outline: none;
+            padding: 8px;
+            width: 100%;
+            max-width: 400px;
         }
 
         button {
-            width: 100%;        
-            background-color: #007bff;
+            background-color: #4CAF50;
             color: white;
-            font-weight: bold;
-            cursor: pointer;
             border: none;
-
+            cursor: pointer;
         }
 
         button:hover {
-            background-color: #0056b3;
+            background-color: #45a049;
         }
 
-        textarea {
-            resize: vertical;
-            height: 100px;
+        .error {
+            color: red;
         }
     </style>
 </head>
 <body>
-    <div class="form-container">
-        <h1>Edit Obat</h1>
-        <form action="{{ route('obat.update', $obat->id) }}" method="POST">
-            @csrf
-            @method('PUT')
+    <h1>Edit Data Obat</h1>
 
-            <label for="nama_obat">Nama Obat:</label>
-            <input type="text" name="nama_obat" id="nama_obat" value="{{ $obat->nama_obat }}" placeholder="Masukkan nama obat" required>
+    @if ($errors->any())
+        <div class="error">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
 
-            <label for="jenis_obat">Jenis Obat:</label>
-            <input type="text" name="jenis_obat" id="jenis_obat" value="{{ $obat->jenis_obat }}" placeholder="Masukkan jenis obat" required>
+    <form action="{{ route('obat.update', $obat->id) }}" method="POST">
+        @csrf
+        @method('PUT') <!-- Override method ke PUT -->
 
-            <label for="dosis">Dosis:</label>
-            <input type="text" name="dosis" id="dosis" value="{{ $obat->dosis }}" placeholder="Masukkan dosis obat" required>
+        <div>
+            <label for="nama_obat">Nama Obat</label>
+            <input type="text" name="nama_obat" id="nama_obat" value="{{ $obat->nama_obat }}" required>
+        </div>
 
-            <label for="stok">Stok:</label>
-            <input type="number" name="stok" id="stok" value="{{ $obat->stok }}" placeholder="Masukkan jumlah stok" required>
+        <div>
+            <label for="jenis_obat">Jenis Obat</label>
+            <input type="text" name="jenis_obat" id="jenis_obat" value="{{ $obat->jenis_obat }}" required>
+        </div>
 
-            <label for="harga">Harga:</label>
-            <input type="number" name="harga" id="harga" value="{{ $obat->harga }}" placeholder="Masukkan harga obat" required>
+        <div>
+            <label for="dosis">Dosis</label>
+            <input type="text" name="dosis" id="dosis" value="{{ $obat->dosis }}" required>
+        </div>
 
-            <label for="keterangan">Keterangan:</label>
-            <textarea name="keterangan" id="keterangan" placeholder="Masukkan keterangan tambahan">{{ $obat->keterangan }}</textarea>
+        <div>
+            <label for="stok">Stok</label>
+            <input type="number" name="stok" id="stok" value="{{ $obat->stok }}" required>
+        </div>
 
-            <button type="submit">Simpan Perubahan</button>
-        </form>
-    </div>
+        <div>
+            <label for="harga">Harga</label>
+            <input type="number" name="harga" id="harga" value="{{ $obat->harga }}" required>
+        </div>
+
+        <div>
+            <label for="keterangan">Keterangan</label>
+            <textarea name="keterangan" id="keterangan">{{ $obat->keterangan }}</textarea>
+        </div>
+
+        <button type="submit">Simpan Perubahan</button>
+    </form>
 </body>
 </html>
