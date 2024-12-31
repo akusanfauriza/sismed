@@ -1,11 +1,12 @@
 <?php
 
-use App\Http\Controllers\AntrianController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ObatController;
 use App\Http\Controllers\PasienController;
 use App\Http\Controllers\PenggunaController;
 use App\Http\Controllers\RekamMedisController;
+use App\Http\Controllers\AntrianController;
+use App\Http\Controllers\AuthController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,9 +19,15 @@ use App\Http\Controllers\RekamMedisController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Menampilkan form login
+Route::get('/', [AuthController::class, 'showLoginForm'])->name('login');
+
+// Proses login
+Route::post('/login', [AuthController::class, 'login'])->name('login.post');
+
+// Logout
+Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+
 
 // Halaman Obat
 Route::get('/obat', [ObatController::class, 'index'])->name('obat.index'); // Menampilkan daftar obat
@@ -62,3 +69,21 @@ Route::get('rekam-medis', [RekamMedisController::class, 'index'])->name('rekam_m
     Route::get('rekam-medis/{rekamMedis}/edit', [RekamMedisController::class, 'edit'])->name('rekam_medis.edit');
     Route::put('rekam-medis/{rekamMedis}', [RekamMedisController::class, 'update'])->name('rekam_medis.update');
     Route::delete('rekam-medis/{rekamMedis}', [RekamMedisController::class, 'destroy'])->name('rekam_medis.destroy');
+
+// Rute Login Role
+// Rute untuk administrator
+Route::middleware(['auth', 'role:administrator'])->group(function () {
+    Route::resource('pengguna', PenggunaController::class);
+    Route::resource('pasien', PasienController::class);
+});
+
+// Rute untuk dokter
+Route::middleware(['auth', 'role:dokter'])->group(function () {
+    Route::resource('antrian', AntrianController::class);
+    Route::resource('rekam-medis', RekamMedisController::class);
+});
+
+// Rute untuk apoteker
+Route::middleware(['auth', 'role:apoteker'])->group(function () {
+    Route::resource('obat', ObatController::class);
+});

@@ -4,16 +4,19 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
-use Symfony\Component\HttpFoundation\Response;
+use Illuminate\Support\Facades\Auth;
 
 class RoleMiddleware
 {
-    public function handle(Request $request, Closure $next, $role)
+    /**
+     * Handle an incoming request.
+     */
+    public function handle(Request $request, Closure $next, string $role)
     {
-        if (auth()->user() && auth()->user()->role === $role) {
+        if (Auth::check() && Auth::user()->role === $role) {
             return $next($request);
         }
 
-        return redirect()->route('home')->with('error', 'Akses ditolak. Anda bukan Administrator.');
+        return redirect()->route('login')->withErrors(['access_denied' => 'Anda tidak memiliki akses ke halaman ini.']);
     }
 }

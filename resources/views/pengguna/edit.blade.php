@@ -117,7 +117,7 @@
         <input type="text" name="username" value="{{ old('username', $pengguna->username) }}" required>
         @error('username') <p style="color: red;">{{ $message }}</p> @enderror
 
-        <label>Password (kosongkan jika tidak diubah):</label>
+        <label>Password (Wajib di isi, Baru / Lama):</label>
         <input type="password" name="password">
         @error('password') <p style="color: red;">{{ $message }}</p> @enderror
 
