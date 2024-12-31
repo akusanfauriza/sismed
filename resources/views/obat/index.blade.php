@@ -5,13 +5,33 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Daftar Obat</title>
     <style>
+body {
+    font-family: Arial, sans-serif;
+    background-color: rgb(215, 215, 233);
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Perbaikan: pastikan tinggi minimum adalah layar penuh */
+}
+
+.container {
+    flex-grow: 1; /* Memungkinkan container untuk memenuhi ruang yang tersisa */
+    width: 100%;
+    background: #fff;
+    padding: 75px;
+    box-sizing: border-box; /* Pastikan padding tidak melebihi lebar kontainer */
+}
         /* Global Styles */
-        body {
+        /* body {
             font-family: Arial, sans-serif;
-            background-color:rgb(215, 215, 233);
+            background-color: rgb(215, 215, 233);
             margin: 0;
             padding: 0;
-        }
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        } */
 
         header {
             background-color: #002f6c;
@@ -19,7 +39,7 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 20px 40px;
+            padding: 16px 40px;
         }
 
         header nav {
@@ -41,8 +61,8 @@
             background-color: #002f6c;
             color: white;
             text-align: center;
-            padding: 10px 20px;
-            margin-top: 250px;
+            padding: 14px 19px;
+            margin-top: auto;
         }
 
         h1 {
@@ -51,16 +71,15 @@
             margin: 20px 0;
         }
 
-        .container {
+        /* .container {
             width: 90%;
             max-width: 1200px;
-            margin-top: 50px;
-            margin-left: 300px;
+            margin: 50px auto;
             background: #fff;
             padding: 75px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             border-radius: 8px;
-        }
+        } */
 
         .success-message {
             color: green;
@@ -166,7 +185,7 @@
 <body>
 <header>
         <div class="logo">
-            <h2>Sistem Informasi Sismed</h2>
+            <h2>Sistem Informasi Obat</h2>
         </div>
         <nav>
             <a href="#">Home</a>
