@@ -35,23 +35,24 @@ body {
     } */
 
     header {
-        background-color: #002f6c;
-        color: white;
+        background-color: #48c9b0;
+        color: black;
         display: flex;
         align-items: center;
         justify-content: space-between;
-        padding: 16px 40px;
+        padding: 0 40px;
     }
 
     header nav {
         display: flex;
-        gap: 30px;
+        gap: 50px;
     }
 
     header nav a {
-        color: white;
+        color: black;
         text-decoration: none;
         font-size: 16px;
+        font-weight:bold;
     }
 
     header nav a:hover {
@@ -59,10 +60,11 @@ body {
     }
 
     footer {
-        background-color: #002f6c;
-        color: white;
+        background-color: #48c9b0;
+        color: black;
         text-align: center;
-        padding: 14px 19px;
+        padding: 0px;
+        font-weight:bold;
         margin-top: auto;
     }
 
@@ -155,6 +157,13 @@ body {
     .action-buttons button:hover {
         background-color: #d32f2f;
     }
+
+    .success-message {
+            color: green;
+            font-weight: bold;
+            margin-bottom: 20px;
+            text-align: center;
+        }
 
     @media (max-width: 768px) {
         table, th, td {

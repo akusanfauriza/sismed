@@ -33,21 +33,23 @@
         } */
 
         header {
-            background-color: #002f6c;
-            color: white;
+            background-color: #48c9b0;
+            color: black;
+            font-weight:bold;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 16px 40px;
+            padding: 0px 40px;
         }
 
         header nav {
             display: flex;
-            gap: 30px;
+            gap: 50px;
         }
 
         header nav a {
-            color: white;
+            color: black;
+            font-weight:bold;
             text-decoration: none;
             font-size: 16px;
         }
@@ -57,10 +59,11 @@
         }
 
         footer {
-            background-color: #002f6c;
-            color: white;
+            background-color: #48c9b0;
+            color: black;
             text-align: center;
-            padding: 14px 19px;
+            font-weight:bold;
+            padding: 0;
             margin-top: auto;
         }
 

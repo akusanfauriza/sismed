@@ -15,25 +15,6 @@
             align-items: center;
             min-height: 100vh;
         }
-        /* body {
-            font-family: Arial, sans-serif;
-            background-color:rgb(215, 215, 233);
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-        } */
-
-        /* .container {
-            background: #ffffff;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            max-width: 500px;
-            width: 90%;
-        } */
 
         .container{
             background: #ffffff;

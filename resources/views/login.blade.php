@@ -21,6 +21,7 @@
     background-size: cover; /* Memastikan gambar memenuhi seluruh area */
     background-position: center; /* Memusatkan gambar */
     background-repeat: no-repeat; /* Tidak mengulang gambar */
+    font-weight:bold;
     
 }
 
@@ -46,7 +47,7 @@
     display: block;
     text-align: left;
     margin-bottom: 8px;
-    color: #555;
+    color:black;
     font-weight: bold;
     font-size: 18px;
 }
@@ -60,12 +61,13 @@
     border-radius: 5px;
     font-size: 15px;
     box-sizing: border-box;
+    font-weight:bold;
 }
 
 .login-box input:focus {
     border-color: #000000;
     outline: none;
-    box-shadow: 0 0 5px rgba(124, 62, 53, 0.5); /* Highlight input saat fokus */
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5); /* Highlight input saat fokus */
 }
 
 /* Tombol login */
@@ -79,6 +81,7 @@
     font-size: 16px;
     cursor: pointer;
     transition: background-color 0.3s ease;
+    font-weight:bold;
 }
 
 .login-box button:hover {

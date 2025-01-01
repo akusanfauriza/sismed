@@ -93,7 +93,7 @@ button:hover {
 <body>
     <div class="container">
     <h1>Edit Rekam Medis</h1>
-    <form action="{{ route('rekam_medis.update', $rekamMedis->id) }}" method="POST">
+    <form action="{{ route('rekam-medis.update', $rekamMedis->id) }}" method="POST">
         @csrf
         @method('PUT')
 

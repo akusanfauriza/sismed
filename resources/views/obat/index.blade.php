@@ -7,7 +7,7 @@
     <style>
 body {
     font-family: Arial, sans-serif;
-    background-color: rgb(215, 215, 233);
+    background-color: rgb(215, 215, 233); 
     margin: 0;
     padding: 0;
     display: flex;
@@ -18,7 +18,7 @@ body {
 .container {
     flex-grow: 1; /* Memungkinkan container untuk memenuhi ruang yang tersisa */
     width: 100%;
-    background: #fff;
+    background:#fff;
     padding: 75px;
     box-sizing: border-box; /* Pastikan padding tidak melebihi lebar kontainer */
 }
@@ -34,21 +34,23 @@ body {
         } */
 
         header {
-            background-color: #002f6c;
-            color: white;
+            background-color: #48c9b0;
+            color: black;
+            font-weight:bold;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 16px 40px;
+            padding: 0 40px;
         }
 
         header nav {
             display: flex;
-            gap: 30px;
+            gap: 50px;
         }
 
         header nav a {
-            color: white;
+            color: black;
+            font-weight:bold;
             text-decoration: none;
             font-size: 16px;
         }
@@ -58,10 +60,11 @@ body {
         }
 
         footer {
-            background-color: #002f6c;
-            color: white;
+            background-color:#48c9b0;
+            color: black;
+            font-weight:bold;
             text-align: center;
-            padding: 14px 19px;
+            padding: 0px ;
             margin-top: auto;
         }
 

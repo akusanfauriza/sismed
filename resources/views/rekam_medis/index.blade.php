@@ -6,51 +6,43 @@
     <title>Daftar Rekam Medis</title>
     <style>
         
-body {
-    font-family: Arial, sans-serif;
-    background-color: rgb(215, 215, 233);
-    margin: 0;
-    padding: 0;
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh; /* Perbaikan: pastikan tinggi minimum adalah layar penuh */
-}
-
-.container {
-    flex-grow: 1; /* Memungkinkan container untuk memenuhi ruang yang tersisa */
-    width: 100%;
-    background: #fff;
-    padding: 75px;
-    box-sizing: border-box; /* Pastikan padding tidak melebihi lebar kontainer */
-}
-        /* body {
+        body {
             font-family: Arial, sans-serif;
             background-color: rgb(215, 215, 233);
             margin: 0;
             padding: 0;
             display: flex;
             flex-direction: column;
-            min-height: 100vh;
-        } */
+            min-height: 100vh; /* Perbaikan: pastikan tinggi minimum adalah layar penuh */
+        }
+
+        .container {                
+            flex-grow: 1; /* Memungkinkan container untuk memenuhi ruang yang tersisa */
+            width: 100%;
+            background: #fff;
+            padding: 75px;
+            box-sizing: border-box; /* Pastikan padding tidak melebihi lebar kontainer */
+}
 
         header {
-            background-color: #002f6c;
-            color: white;
+            background-color: #48c9b0;
+            color: black;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 16px 40px;
+            padding: 0px 40px;
         }
 
         header nav {
             display: flex;
-            gap: 30px;
+            gap: 50px;
         }
 
         header nav a {
-            color: white;
+            color: black;
             text-decoration: none;
             font-size: 16px;
+            font-weight:bold;
         }
 
         header nav a:hover {
@@ -58,10 +50,11 @@ body {
         }
 
         footer {
-            background-color: #002f6c;
-            color: white;
+            background-color: #48c9b0;
+            color: black;
             text-align: center;
-            padding: 14px 19px;
+            font-weight:bold;
+            padding: 0;
             margin-top: auto;
         }
 
@@ -70,16 +63,6 @@ body {
             color: #333;
             margin: 20px 0;
         }
-
-        /* .container {
-            width: 90%;
-            max-width: 1200px;
-            margin: 50px auto;
-            background: #fff;
-            padding: 75px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            border-radius: 8px;
-        } */
 
         .success-message {
             color: green;
@@ -197,7 +180,7 @@ body {
     <div class="container">
     <h1>Daftar Rekam Medis</h1>
     
-    <a href="{{ route('rekam_medis.create') }}" class="add-button">Tambah Rekam Medis</a>
+    <a href="{{ route('rekam-medis.create') }}" class="add-button">Tambah Rekam Medis</a>
     <table border="1" cellpadding="10" cellspacing="0">
         <thead>
             <tr>
@@ -223,8 +206,8 @@ body {
                     <td>{{ $item->tanggal_periksa }}</td>
                     <td>
                         <div class="action-buttons">
-                                <a href="{{ route('rekam_medis.edit', $item->id) }}">Edit</a>
-                                <form action="{{ route('rekam_medis.destroy', $item->id) }}" method="POST" style="display:inline;">
+                                <a href="{{ route('rekam-medis.edit', $item->id) }}">Edit</a>
+                                <form action="{{ route('rekam-medis.destroy', $item->id) }}" method="POST" style="display:inline;">
                                     @csrf
                                     @method('DELETE')
                                 <button type="submit" onclick="return confirm('Yakin ingin menghapus?')">Hapus</button>
