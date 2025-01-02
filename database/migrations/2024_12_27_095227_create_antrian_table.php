@@ -12,14 +12,15 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('antrian', function (Blueprint $table) {
-            $table->string('id_pasien', 4); // Harus sama dengan tipe `id` di tabel `pasien`
+            $table->id(); 
+            $table->string('id_pasien', 4);
             $table->foreign('id_pasien')->references('id')->on('pasien')->onDelete('cascade');
-            $table->date('tanggal_antrian');
-            $table->enum('status', ['menunggu', 'sedang diperiksa', 'selesai']);
-            $table->foreignId('id_dokter')->constrained('pengguna')->onDelete('cascade');
+            $table->foreignId('dokter_id')->constrained('pengguna')->onDelete('cascade'); 
+            $table->enum('status', ['menunggu', 'diproses', 'selesai']);
+            $table->string('nomor_antrian');
+            $table->timestamp('waktu_antrian')->nullable();
             $table->timestamps();
-        });        
-        
+        });              
     }
 
     /**

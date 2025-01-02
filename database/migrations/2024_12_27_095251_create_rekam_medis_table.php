@@ -12,15 +12,17 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('rekam_medis', function (Blueprint $table) {
-            $table->string('id_pasien', 4); // Panjang dan tipe data harus sama dengan kolom `id` di tabel `pasien`
+            $table->id();
+            $table->string('id_pasien', 4);
             $table->foreign('id_pasien')->references('id')->on('pasien')->onDelete('cascade');
-            $table->foreignId('id_dokter')->constrained('pengguna')->onDelete('cascade');
+            $table->foreignId('dokter_id')->constrained('users')->onDelete('cascade');
             $table->text('diagnosa');
-            $table->foreignId('id_obat')->constrained('obat')->onDelete('cascade');
-            $table->text('catatan')->nullable();
-            $table->date('tanggal_periksa');
+            $table->text('tindakan');
+            $table->text('resep_obat')->nullable();
+            $table->date('tanggal');
             $table->timestamps();
         });
+        
         
     }
 
