@@ -180,7 +180,7 @@
     <div class="container">
     <h1>Daftar Rekam Medis</h1>
     
-    <a href="{{ route('rekam-medis.create') }}" class="add-button">Tambah Rekam Medis</a>
+    <a href="{{ route('rekam_medis.create') }}" class="add-button">Tambah Rekam Medis</a>
     <table border="1" cellpadding="10" cellspacing="0">
         <thead>
             <tr>
@@ -206,8 +206,8 @@
                     <td>{{ $item->tanggal_periksa }}</td>
                     <td>
                         <div class="action-buttons">
-                                <a href="{{ route('rekam-medis.edit', $item->id) }}">Edit</a>
-                                <form action="{{ route('rekam-medis.destroy', $item->id) }}" method="POST" style="display:inline;">
+                                <a href="{{ route('rekam_medis.edit', $item->id) }}">Edit</a>
+                                <form action="{{ route('rekam_medis.destroy', $item->id) }}" method="POST" style="display:inline;">
                                     @csrf
                                     @method('DELETE')
                                 <button type="submit" onclick="return confirm('Yakin ingin menghapus?')">Hapus</button>

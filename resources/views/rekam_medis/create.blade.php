@@ -95,7 +95,7 @@ button:hover {
 <body>
     <div class="container">
     <h1>Tambah Rekam Medis</h1>
-    <form action="{{ route('rekam-medis.store') }}" method="POST">
+    <form action="{{ route('rekam_medis.store') }}" method="POST">
         @csrf
         <label for="id_pasien">Pasien:</label>
         <select name="id_pasien" id="id_pasien" required>

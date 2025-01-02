@@ -35,7 +35,7 @@ class RekamMedisController extends Controller
         ]);
 
         RekamMedis::create($request->all());
-        return redirect()->route('rekam-medis.index')->with('success', 'Rekam Medis berhasil ditambahkan.');
+        return redirect()->route('rekam_medis.index')->with('success', 'Rekam Medis berhasil ditambahkan.');
     }
 
     public function edit(RekamMedis $rekamMedis)
@@ -57,12 +57,12 @@ class RekamMedisController extends Controller
         ]);
 
         $rekamMedis->update($request->all());
-        return redirect()->route('rekam-medis.index')->with('success', 'Rekam Medis berhasil diperbarui.');
+        return redirect()->route('rekam_medis.index')->with('success', 'Rekam Medis berhasil diperbarui.');
     }
 
     public function destroy(RekamMedis $rekamMedis)
     {
         $rekamMedis->delete();
-        return redirect()->route('rekam-medis.index')->with('success', 'Rekam Medis berhasil dihapus.');
+        return redirect()->route('rekam_medis.index')->with('success', 'Rekam Medis berhasil dihapus.');
     }
 }

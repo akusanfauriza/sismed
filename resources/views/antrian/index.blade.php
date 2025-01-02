@@ -220,8 +220,8 @@
                         <td>{{ ucfirst($item->status) }}</td>
                         <td>
                             <div class="action-buttons">
-                                <a href="{{ route('antrian.edit', $item->id) }}">Edit</a>
-                                <form action="{{ route('antrian.destroy', $item->id) }}" method="POST" style="display:inline;">
+                                <a href="{{ route('antrian.edit', $item->id_pasien) }}">Edit</a>
+                                <form action="{{ route('antrian.destroy', $item->id_pasien) }}" method="POST" style="display:inline;">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" onclick="return confirm('Yakin ingin menghapus?')">Delete</button>

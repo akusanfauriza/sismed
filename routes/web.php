@@ -51,10 +51,7 @@ Route::middleware(['auth', 'role:administrator'])->group(function () {
     Route::get('/pengguna/{id}/edit', [PenggunaController::class, 'edit'])->name('pengguna.edit'); 
     Route::put('/pengguna/{id}', [PenggunaController::class, 'update'])->name('pengguna.update'); 
     Route::delete('/pengguna/{id}', [PenggunaController::class, 'destroy'])->name('pengguna.destroy');
-});
 
-// Rute Untuk Role Dokter
-Route::middleware(['auth', 'role:dokter'])->group(function () {
     // Halaman Antrian
     Route::get('/antrian', [AntrianController::class, 'index'])->name('antrian.index');
     Route::get('/antrian/create', [AntrianController::class, 'create'])->name('antrian.create'); 
@@ -62,7 +59,10 @@ Route::middleware(['auth', 'role:dokter'])->group(function () {
     Route::get('/antrian/{id}/edit', [AntrianController::class, 'edit'])->name('antrian.edit'); 
     Route::put('/antrian/{id}', [AntrianController::class, 'update'])->name('antrian.update'); 
     Route::delete('/antrian/{id}', [AntrianController::class, 'destroy'])->name('antrian.destroy');
+});
 
+// Rute Untuk Role Dokter
+Route::middleware(['auth', 'role:dokter'])->group(function () {
     // Rekam Medis
     Route::get('rekam-medis', [RekamMedisController::class, 'index'])->name('rekam_medis.index');
     Route::get('rekam-medis/create', [RekamMedisController::class, 'create'])->name('rekam_medis.create');
