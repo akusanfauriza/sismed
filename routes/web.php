@@ -7,6 +7,7 @@ use App\Http\Controllers\PenggunaController;
 use App\Http\Controllers\RekamMedisController;
 use App\Http\Controllers\AntrianController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\HomePageController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,6 +19,9 @@ use App\Http\Controllers\AuthController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+
+// Hompage
+// Route::get(Menampilkan hompage)
 
 // Menampilkan form login
 Route::get('/', [AuthController::class, 'showLoginForm'])->name('login');

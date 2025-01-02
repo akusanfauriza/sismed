@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('pasien', function (Blueprint $table) {
-            $table->id();
+            $table->string('id', 4)->primary(); // Gunakan string 4 karakter sebagai primary key
             $table->string('nama');
             $table->text('alamat');
             $table->date('tanggal_lahir');
@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('no_hp')->nullable();
             $table->text('riwayat_penyakit')->nullable();
             $table->timestamps();
-        });
+        });               
         
     }
 
