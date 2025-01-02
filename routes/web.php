@@ -33,7 +33,6 @@ Route::post('/login', [AuthController::class, 'login'])->name('login.post');
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 
-// Rute Login Role
 // Rute untuk administrator
 Route::middleware(['auth', 'role:administrator'])->group(function () {
     // Halaman Pasien

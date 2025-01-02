@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Antrian;
 use App\Models\Pasien;
 use App\Models\Pengguna;
+use Illuminate\Http\Request;
 
 class AntrianController extends Controller
 {
@@ -15,10 +15,10 @@ class AntrianController extends Controller
     public function index()
     {
         // Ambil semua data antrian dengan relasi pasien dan dokter
-        $dataAntrian = Antrian::with(['pasien', 'dokter'])->get();
+        $antrian = Antrian::with(['pasien', 'dokter'])->get();
 
         // Kirim data ke view
-        return view('antrian.index', compact('dataAntrian'));
+        return view('antrian.index', compact('antrian'));
     }
 
     /**
@@ -26,12 +26,12 @@ class AntrianController extends Controller
      */
     public function create()
     {
-        // Ambil daftar pasien dan dokter
-        $dataPasien = Pasien::all();
-        $dataDokter = Pengguna::where('role', 'dokter')->get();
+        // Ambil data pasien dan dokter
+        $pasien = Pasien::all(); // Semua pasien
+        $dokter = Pengguna::where('role', 'dokter')->get(); // Pengguna dengan role dokter
 
-        // Kirim data ke view form create
-        return view('antrian.create', compact('dataPasien', 'dataDokter'));
+        // Kirim data ke view
+        return view('antrian.create', compact('pasien', 'dokter'));
     }
 
     /**
@@ -39,12 +39,20 @@ class AntrianController extends Controller
      */
     public function store(Request $request)
     {
+        // Validasi input
+        $request->validate([
+            'id_pasien' => 'required|exists:pasien,id',
+            'dokter_id' => 'required|exists:pengguna,id',
+            'status' => 'required|in:menunggu,diproses,selesai',
+            'nomor_antrian' => 'required|string|max:10',
+            'waktu_antrian' => 'nullable|date',
+        ]);
 
         // Simpan data ke tabel antrian
         Antrian::create($request->all());
 
-        // Redirect ke halaman daftar antrian dengan pesan sukses
-        return redirect()->route('antrian.index')->with('success', 'Data antrian berhasil ditambahkan.');
+        // Redirect ke halaman index dengan pesan sukses
+        return redirect()->route('antrian.index')->with('success', 'Antrian berhasil ditambahkan.');
     }
 
     /**
@@ -52,15 +60,15 @@ class AntrianController extends Controller
      */
     public function edit($id)
     {
-        // Cari data antrian berdasarkan ID
+        // Ambil data antrian berdasarkan ID
         $antrian = Antrian::findOrFail($id);
 
-        // Ambil daftar pasien dan dokter
-        $dataPasien = Pasien::all();
-        $dataDokter = Pengguna::where('role', 'dokter')->get();
+        // Ambil data pasien dan dokter untuk dropdown
+        $pasien = Pasien::all();
+        $dokter = Pengguna::where('role', 'dokter')->get();
 
-        // Kirim data ke view edit
-        return view('antrian.edit', compact('antrian', 'dataPasien', 'dataDokter'));
+        // Kirim data ke view
+        return view('antrian.edit', compact('antrian', 'pasien', 'dokter'));
     }
 
     /**
@@ -68,15 +76,23 @@ class AntrianController extends Controller
      */
     public function update(Request $request, $id)
     {
+        // Validasi input
+        $request->validate([
+            'id_pasien' => 'required|exists:pasien,id',
+            'dokter_id' => 'required|exists:pengguna,id',
+            'status' => 'required|in:menunggu,diproses,selesai',
+            'nomor_antrian' => 'required|string|max:10',
+            'waktu_antrian' => 'nullable|date',
+        ]);
 
-        // Cari data antrian berdasarkan ID
+        // Temukan data antrian
         $antrian = Antrian::findOrFail($id);
 
-        // Update data
+        // Update data antrian
         $antrian->update($request->all());
 
-        // Redirect ke halaman daftar antrian dengan pesan sukses
-        return redirect()->route('antrian.index')->with('success', 'Data antrian berhasil diperbarui.');
+        // Redirect ke halaman index dengan pesan sukses
+        return redirect()->route('antrian.index')->with('success', 'Antrian berhasil diperbarui.');
     }
 
     /**
@@ -84,13 +100,13 @@ class AntrianController extends Controller
      */
     public function destroy($id)
     {
-        // Cari data antrian berdasarkan ID
+        // Temukan data antrian
         $antrian = Antrian::findOrFail($id);
 
         // Hapus data
         $antrian->delete();
 
-        // Redirect ke halaman daftar antrian dengan pesan sukses
-        return redirect()->route('antrian.index')->with('success', 'Data antrian berhasil dihapus.');
+        // Redirect ke halaman index dengan pesan sukses
+        return redirect()->route('antrian.index')->with('success', 'Antrian berhasil dihapus.');
     }
 }

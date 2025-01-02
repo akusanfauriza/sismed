@@ -8,24 +8,28 @@ use App\Models\Pasien;
 class PasienController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Menampilkan daftar pasien.
      */
     public function index()
     {
-        // Ambil semua data obat dari tabel
+        // Ambil semua data pasien dari tabel
         $dataPasien = Pasien::all();
 
         // Kirim data ke view
         return view('pasien.index', compact('dataPasien'));
     }
 
-    // Create Data Pasien
+    /**
+     * Menampilkan halaman tambah pasien.
+     */
     public function create()
     {
         return view('pasien.create');
     }
 
-    // Meyimpan Data Pasien
+    /**
+     * Menyimpan data pasien baru.
+     */
     public function store(Request $request)
     {
         // Validasi input
@@ -41,19 +45,25 @@ class PasienController extends Controller
         // Simpan data ke database
         Pasien::create($request->all());
 
-        // Redirect ke halaman lain dengan pesan sukses
+        // Redirect ke halaman index dengan pesan sukses
         return redirect()->route('pasien.index')->with('success', 'Data pasien berhasil ditambahkan.');
     }
 
     /**
-     * Display the specified resource.
+     * Menampilkan detail pasien.
      */
-    public function show(string $id)
+    public function show($id)
     {
-        //
+        // Cari data pasien berdasarkan ID
+        $pasien = Pasien::findOrFail($id);
+
+        // Kirim data ke view
+        return view('pasien.show', compact('pasien'));
     }
 
-    // Edit Data Pasien
+    /**
+     * Menampilkan halaman edit pasien.
+     */
     public function edit($id)
     {
         // Ambil data pasien berdasarkan ID
@@ -63,8 +73,9 @@ class PasienController extends Controller
         return view('pasien.edit', compact('pasien'));
     }
 
-
-    // Update Data Pasien
+    /**
+     * Memperbarui data pasien.
+     */
     public function update(Request $request, $id)
     {
         // Validasi input
@@ -87,11 +98,12 @@ class PasienController extends Controller
         return redirect()->route('pasien.index')->with('success', 'Data pasien berhasil diperbarui.');
     }
 
-
-    // Hapus Data Pasien
+    /**
+     * Menghapus data pasien.
+     */
     public function destroy($id)
     {
-        // Cari data obat berdasarkan ID
+        // Cari data pasien berdasarkan ID
         $pasien = Pasien::findOrFail($id);
 
         // Hapus data
