@@ -13,11 +13,11 @@ class RekamMedis extends Model
 
     protected $fillable = [
         'id_pasien',
-        'id_dokter',
+        'dokter_id',
         'diagnosa',
-        'id_obat',
-        'catatan',
-        'tanggal_periksa',
+        'tindakan',
+        'resep_obat',
+        'tanggal',
     ];
 
     // Relasi dengan tabel lain
@@ -28,11 +28,6 @@ class RekamMedis extends Model
 
     public function dokter()
     {
-        return $this->belongsTo(Pengguna::class, 'id_dokter');
-    }
-
-    public function obat()
-    {
-        return $this->belongsTo(Obat::class, 'id_obat');
+        return $this->belongsTo(Pengguna::class, 'dokter_id');
     }
 }

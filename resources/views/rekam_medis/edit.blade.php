@@ -3,132 +3,72 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Edit Rekam Medis</title>
-    <style>
-    /* Reset dasar dan styling umum */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-body {
-    font-family: Arial, sans-serif;
-    background-color:rgb(215, 215, 233);
-    padding: 20px;
-}
-
-.container {
-    background-color: white;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
-    max-width: 600px;
-    margin-top: 5%;
-    margin-bottom:5%;
-    margin-left: 60vh;
-}
-
-h1 {
-    text-align: center;
-    margin-bottom: 20px;
-    color: #333;
-    font-size: 24px;
-}
-
-form {
-    display: flex;
-    flex-direction: column;
-}
-
-label {
-    font-size: 16px;
-    color: #555;
-    margin-bottom: 10px;
-    font-weight: bold;
-}
-
-select, textarea, input[type="date"], button {
-    padding: 10px;
-    margin-bottom: 15px;
-    font-size: 16px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-    width: 100%;
-}
-
-textarea {
-    resize: vertical;
-    min-height: 80px;
-}
-
-button {
-    background-color: #007BFF;
-    color: white;
-    border: none;
-    cursor: pointer;
-    font-size: 16px;
-    border-radius: 5px;
-    padding: 10px;
-    transition: background-color 0.3s ease;
-}
-
-button:hover {
-    background-color: #0056b3;
-}
-
-/* Responsif */
-@media (max-width: 600px) {
-    .container {
-        width: 90%;
-        padding: 15px;
-    }
-
-    h1 {
-        font-size: 20px;
-    }
-}
-    </style>
+    <title>Tambah Rekam Medis</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
 </head>
 <body>
-    <div class="container">
-    <h1>Edit Rekam Medis</h1>
-    <form action="{{ route('rekam-medis.update', $rekamMedis->id) }}" method="POST">
-        @csrf
-        @method('PUT')
+    <div class="container mt-5">
+        <h1>Tambah Rekam Medis</h1>
 
-        <label for="id_pasien">Pasien:</label>
-        <select name="id_pasien" id="id_pasien" required>
-            @foreach ($pasien as $p)
-                <option value="{{ $p->id }}" {{ $p->id == $rekamMedis->id_pasien ? 'selected' : '' }}>{{ $p->nama }}</option>
-            @endforeach
-        </select><br>
+        @if($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
 
-        <label for="id_dokter">Dokter:</label>
-        <select name="id_dokter" id="id_dokter" required>
-            @foreach ($dokter as $d)
-                <option value="{{ $d->id }}" {{ $d->id == $rekamMedis->id_dokter ? 'selected' : '' }}>{{ $d->nama_lengkap }}</option>
-            @endforeach
-        </select><br>
+        <form action="{{ route('rekam_medis.update', $rekamMedis->id) }}" method="POST">
+            @csrf
+            @method('PUT')
+            <div class="form-group">
+                <label for="id_pasien">Nama Pasien</label>
+                <select name="id_pasien" class="form-control">
+                    @foreach($pasien as $pasienItem)
+                        <option value="{{ $pasienItem->id }}" 
+                            {{ old('id_pasien', $rekamMedis->id_pasien) == $pasienItem->id ? 'selected' : '' }}>
+                            {{ $pasienItem->nama }}
+                        </option>
+                    @endforeach
+                </select>
+            </div>
 
-        <label for="diagnosa">Diagnosa:</label>
-        <textarea name="diagnosa" id="diagnosa" required>{{ $rekamMedis->diagnosa }}</textarea><br>
+            <div class="form-group">
+                <label for="dokter_id">Dokter</label>
+                <select name="dokter_id" class="form-control">
+                    @foreach($dokter as $dokterItem)
+                        <option value="{{ $dokterItem->id }}" 
+                            {{ old('dokter_id', $rekamMedis->dokter_id) == $dokterItem->id ? 'selected' : '' }}>
+                            {{ $dokterItem->nama_lengkap }}
+                        </option>
+                    @endforeach
+                </select>
+            </div>
 
-        <label for="id_obat">Obat:</label>
-        <select name="id_obat" id="id_obat" required>
-            @foreach ($obat as $o)
-                <option value="{{ $o->id }}" {{ $o->id == $rekamMedis->id_obat ? 'selected' : '' }}>{{ $o->nama_obat }}</option>
-            @endforeach
-        </select><br>
+            <div class="form-group">
+                <label for="diagnosa">Diagnosa</label>
+                <textarea name="diagnosa" class="form-control">{{ old('diagnosa', $rekamMedis->diagnosa) }}</textarea>
+            </div>
 
-        <label for="catatan">Catatan:</label>
-        <textarea name="catatan" id="catatan">{{ $rekamMedis->catatan }}</textarea><br>
+            <div class="form-group">
+                <label for="tindakan">Tindakan</label>
+                <textarea name="tindakan" class="form-control">{{ old('tindakan', $rekamMedis->tindakan) }}</textarea>
+            </div>
 
-        <label for="tanggal_periksa">Tanggal Periksa:</label>
-        <input type="date" name="tanggal_periksa" id="tanggal_periksa" value="{{ $rekamMedis->tanggal_periksa }}" required><br>
+            <div class="form-group">
+                <label for="resep_obat">Resep Obat</label>
+                <textarea name="resep_obat" class="form-control">{{ old('resep_obat', $rekamMedis->resep_obat) }}</textarea>
+            </div>
 
-        <button type="submit">Simpan Perubahan</button>
-    </form>
+            <div class="form-group">
+                <label for="tanggal">Tanggal</label>
+                <input type="date" name="tanggal" class="form-control" value="{{ old('tanggal', $rekamMedis->tanggal) }}">
+            </div>
+
+            <button type="submit" class="btn btn-primary">Update</button>
+        </form>
     </div>
 </body>
 </html>

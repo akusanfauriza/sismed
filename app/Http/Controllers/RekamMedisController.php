@@ -5,14 +5,13 @@ namespace App\Http\Controllers;
 use App\Models\RekamMedis;
 use App\Models\Pasien;
 use App\Models\Pengguna;
-use App\Models\Obat;
 use Illuminate\Http\Request;
 
 class RekamMedisController extends Controller
 {
     public function index()
     {
-        $rekamMedis = RekamMedis::with('pasien', 'dokter', 'obat')->get();
+        $rekamMedis = RekamMedis::with('pasien', 'dokter')->get();
         return view('rekam_medis.index', compact('rekamMedis'));
     }
 
@@ -20,18 +19,18 @@ class RekamMedisController extends Controller
     {
         $pasien = Pasien::all();
         $dokter = Pengguna::where('role', 'dokter')->get();
-        $obat = Obat::all();
-        return view('rekam_medis.create', compact('pasien', 'dokter', 'obat'));
+        return view('rekam_medis.create', compact('pasien', 'dokter'));
     }
 
     public function store(Request $request)
     {
         $request->validate([
-            'id_pasien' => 'required',
-            'id_dokter' => 'required',
+            'id_pasien' => 'required|exists:pasien,id',
+            'dokter_id' => 'required|exists:pengguna,id',
             'diagnosa' => 'required',
-            'id_obat' => 'required',
-            'tanggal_periksa' => 'required|date',
+            'tindakan' => 'required',
+            'resep_obat' => 'nullable',
+            'tanggal' => 'required|date',
         ]);
 
         RekamMedis::create($request->all());
@@ -42,18 +41,18 @@ class RekamMedisController extends Controller
     {
         $pasien = Pasien::all();
         $dokter = Pengguna::where('role', 'dokter')->get();
-        $obat = Obat::all();
-        return view('rekam_medis.edit', compact('rekamMedis', 'pasien', 'dokter', 'obat'));
+        return view('rekam_medis.edit', compact('rekamMedis', 'pasien', 'dokter'));
     }
 
     public function update(Request $request, RekamMedis $rekamMedis)
     {
         $request->validate([
-            'id_pasien' => 'required',
-            'id_dokter' => 'required',
+            'id_pasien' => 'required|exists:pasien,id',
+            'dokter_id' => 'required|exists:pengguna,id',
             'diagnosa' => 'required',
-            'id_obat' => 'required',
-            'tanggal_periksa' => 'required|date',
+            'tindakan' => 'required',
+            'resep_obat' => 'nullable',
+            'tanggal' => 'required|date',
         ]);
 
         $rekamMedis->update($request->all());

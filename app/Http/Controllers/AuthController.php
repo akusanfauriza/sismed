@@ -36,7 +36,7 @@ class AuthController extends Controller
             if ($user->role === 'administrator') {
                 return redirect()->route('pengguna.index');
             } elseif ($user->role === 'dokter') {
-                return redirect()->route('antrian.index');
+                return redirect()->route('rekam_medis.index');
             } elseif ($user->role === 'apoteker') {
                 return redirect()->route('obat.index');
             }

@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('id_pasien', 4);
             $table->foreign('id_pasien')->references('id')->on('pasien')->onDelete('cascade');
-            $table->foreignId('dokter_id')->constrained('users')->onDelete('cascade');
+            $table->foreignId('dokter_id')->constrained('pengguna')->references('id')->onDelete('cascade');
             $table->text('diagnosa');
             $table->text('tindakan');
             $table->text('resep_obat')->nullable();
