@@ -163,7 +163,7 @@ footer {
         <br>
 
         <button type="submit">Simpan</button>
-        <button class="back" href="{{route('antrian.index')}}">Kembali</button>
+        <button class="back" onclick="window.location='{{ route('antrian.index') }}'">Kembali</button>
     </form>
     
     </div>
