@@ -211,7 +211,7 @@ body {
         <table>
             <thead>
                 <tr>
-                    <th>ID</th>
+                    <th>No</th>
                     <th>Nama Obat</th>
                     <th>Jenis Obat</th>
                     <th>Dosis</th>
