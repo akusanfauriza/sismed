@@ -107,40 +107,25 @@
 }
     </style>
 </head>
-<body>
-    <div class="login-container">
-    <div class="login-box">
-    <h1>Login User</h1>
-    @if($errors->any())
-        <div>
-            <strong>{{ $errors->first('login_error') }}</strong>
-        </div>
-    @endif
-    <form method="POST" action="{{ route('login.post') }}">
-        @csrf
-            <label for="username">Username:</label>
-            <input type="text" name="username" id="username" placeholder="Masukan username" required>
-            <label for="password">Password:</label>
-            <input type="password" name="password" id="password" placeholder="Masukkan password "required>
-        <button type="submit">Login</button>
-    </form>
-    <p class="register">Belum punya akun? <a href="">Daftar Sekarang</a></p>
-    </div>
-</body>
-<!-- <body>
-    <div class="login-container">
+    <body>
+        <div class="login-container">
         <div class="login-box">
-            <h2>LOGIN USER</h2>
-            <form>
-                <label for="username">Username</label>
-                <input type="text" id="username" placeholder="Masukkan username" required>
-                <label for="password">Password</label>
-                <input type="password" id="password" placeholder="Masukkan password" required>
-                <button type="submit">LOGIN</button>
-            </form>
-            <p class="register">Belum punya akun? <a href="daftar.html">Daftar Sekarang</a></p>
+        <h1>Login User</h1>
+        @if($errors->any())
+            <div>
+                <strong>{{ $errors->first('login_error') }}</strong>
+            </div>
+        @endif
+        <form method="POST" action="{{ route('login.post') }}">
+            @csrf
+                <label for="username">Username:</label>
+                <input type="text" name="username" id="username" placeholder="Masukan username" required>
+                <label for="password">Password:</label>
+                <input type="password" name="password" id="password" placeholder="Masukkan password "required>
+            <button type="submit">Login</button>
+        </form>
+        <p class="register">Belum punya akun? <a href="">Daftar Sekarang</a></p>
         </div>
-    </div>
-</body> -->
+    </body>
 </html>
 

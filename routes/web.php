@@ -23,8 +23,13 @@ use App\Http\Controllers\HomePageController;
 // Hompage
 // Route::get(Menampilkan hompage)
 
+// Homepage
+Route::get('/', function () {
+    return view('home');
+});
+
 // Menampilkan form login
-Route::get('/', [AuthController::class, 'showLoginForm'])->name('login');
+Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login.form');
 
 // Proses login
 Route::post('/login', [AuthController::class, 'login'])->name('login.post');
