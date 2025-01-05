@@ -7,7 +7,6 @@ use App\Http\Controllers\PenggunaController;
 use App\Http\Controllers\RekamMedisController;
 use App\Http\Controllers\AntrianController;
 use App\Http\Controllers\AuthController;
-use App\Http\Controllers\HomePageController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,6 +21,7 @@ use App\Http\Controllers\HomePageController;
 
 // Hompage
 // Route::get(Menampilkan hompage)
+
 
 // Menampilkan form login
 Route::get('/', [AuthController::class, 'showLoginForm'])->name('login');
