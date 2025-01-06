@@ -261,7 +261,7 @@ footer {
 </section>   
     </main>
     <footer>
-            <p>&copy; 2011 Klinik Sismed.</p>
+            <p>&copy; 2024 Klinik Sismed.</p>
     </footer>
 </body>
 </body>
