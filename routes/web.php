@@ -19,8 +19,10 @@ use App\Http\Controllers\AuthController;
 |
 */
 
-// Hompage
-// Route::get(Menampilkan hompage)
+// dashboard
+Route::get('dashboard', function (){
+    return view('welcome');
+});
 
 // <<<<<<<
 // =======
